@@ -10,7 +10,9 @@ export class AbilityFactory {
     if (currentUser.role === ADMIN_ROLE) {
       builder.can(Action.Manage, 'all');
     } else if (currentUser.role === TEACHER_ROLE) {
-      builder.can(Action.Manage, 'Course');
+      builder.can(Action.Manage, 'Course', {
+        instructorId: currentUser.id,
+      });
     } else {
       builder.can(Action.Read, 'all');
     }
